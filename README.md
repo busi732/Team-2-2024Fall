@@ -1,9 +1,7 @@
-Here is your README rewritten with the structure and professionalism aligned with the provided template:  
-
 ---
 
 # Team-2-2024Fall: Wind Turbine Data Science Project  
-This repository is dedicated to **Team 2** in BUSI 732, Fall 2024. The project focuses on identifying **opportunities for optimization** in wind turbine operations for **EnergyCo** using IIOT (Industrial Internet of Things) data.
+This repository is dedicated to **Team 2** in BUSI 732, Fall 2024. The project intends to identify **opportunities for optimization** in wind turbine operations with IIOT (Industrial Internet of Things) data.
 
 ---
 
@@ -25,7 +23,7 @@ The mission of this project is to **explore the IIOT data from EnergyCo’s wind
 ---
 
 ## 🚀 Getting Started  
-This section will guide you on how to set up the project, run it locally in **VS Code**, and ensure that the **Conda environment** is correctly configured. Follow these instructions to get started quickly.  
+This section will guide you on what you need to employ in this project. We mainly work locally in **VS Code** with the **Conda environment**. The next section will teach you how to set up the environment for the project after satisfying the following required software.
 
 - **Prerequisites**:  
     - Install **Git**, **Conda**, and **Python 3.8.x or later**.
@@ -34,6 +32,7 @@ This section will guide you on how to set up the project, run it locally in **VS
 ---
 
 ## 🛠️ Project Setup Instructions  
+This section allows you to set up an isolated environment containing all the necessary software for this project.  First, you clone the repository from GitHub, and then you set up the environment, some in-use packages, with the environment.yml file. By doing so, you can ensure compatibility and avoid conflicts with other projects
 
 ### 1. **Clone the Repository**  
 Open the **terminal** in VS Code and enter:  
@@ -42,7 +41,7 @@ git clone https://github.com/busi732/Team-2-2024Fall.git
 cd Team-2-2024Fall  
 ```  
 
-💡 **Tip**: Use VS Code’s integrated terminal (`Ctrl + \``) to simplify the process.
+💡 **Tip**: Use  (`Ctrl + \``) to call VS Code’s integrated terminal to execute the commands.
 
 ---
 
@@ -60,11 +59,12 @@ After creating the environment, activate it:
 conda activate turbine  
 ```  
 
-💡 **VS Code Tip**: Set VS Code to use the active Conda environment. Press `Ctrl + Shift + P` (or `Cmd + Shift + P` on macOS), type **Python: Select Interpreter**, and select the **turbine** environment.
+💡 **Tip**: Set VS Code to use the active Conda environment. Press `Ctrl + Shift + P` (or `Cmd + Shift + P` on macOS), type **Python: Select Interpreter**, and select the **turbine** environment.
 
 ---
 
 ## 🌍 Environment Usage  
+Once the environment is activated, you can install additional packages as needed using either conda or pip. For example, we install Jupyter Notebook and common data science libraries as following to help us process data in the future.
 
 1. **Installing Packages**  
 Install packages using either **conda** or **pip** under the activated environment:  
@@ -100,12 +100,12 @@ conda env export > new_environment_filename.yml
 ```bash
 conda env update --file environment.yml --prune  
 ```  
-- **Note**: The `--prune` flag ensures any removed packages are also deleted locally.  
+💡 **Note**: The `--prune` flag ensures any removed packages are also deleted locally.  
 
 ---
 
 ## 🔗 Contributing to the Project  
-
+To contribute to the project, commit and push your changes to the main branch. If the environment.yml file is updated, use conda env update to synchronize your local environment. After installing new packages, update the environment.yml file to maintain a clean and efficient environment.
 1. **After Making Changes**:  
 Use the following commands to update your work on **GitHub**:  
 ```bash
@@ -119,6 +119,7 @@ git push origin main
     ```bash
     conda env update --file environment.yml --prune  
     ```  
+💡 **Note**: The `--prune` flag ensures any packages removed from the environment are also removed locally, keeping everyone’s environment consistent.
 
 3. **Updating the Environment File**:  
 After installing any new packages:
@@ -133,7 +134,7 @@ This keeps the `environment.yml` clean and avoids unnecessary dependencies.
 
 If you encounter any issues:  
 - **Open an issue** in the repository’s issue tracker.  
-- **Check the `notebooks/mytests/` folder** for troubleshooting tips and test notebooks.  
+- **Check the `test/` folder** for troubleshooting tips and test notebooks.  
 - Reach out to teammates on the project’s communication channel (e.g., Slack or email).  
 
 ---
@@ -142,12 +143,11 @@ If you encounter any issues:
 
 This project is maintained by **Team 2** in **BUSI 732**.  
 
-| Team Member       | Role                   |  
+| Team Member       | Task                   |  
 |-------------------|------------------------|  
-| [Name 1]          | Data Scientist         |  
-| [Name 2]          | Analyst                |  
-| [Name 3]          | Developer              |  
+| ZiYi Huang         |  Analyst     |  
+| Javier          | Analyst                |  
+| AJ          | Analyst                |  
+| Radhey Ruparel         | Developer              |  
 
 ---
-
-This README follows a clear structure to ensure all contributors can easily understand the project scope, workflow, and how to contribute effectively.
