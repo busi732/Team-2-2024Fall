@@ -56,7 +56,7 @@ conda env create -f environment.yml
 ### 3. **Activate the Environment**  
 After creating the environment, activate it:  
 ```bash
-conda activate turbine  
+conda activate turbine_env  
 ```  
 
 💡 **Tip**: Set VS Code to use the active Conda environment. Press `Ctrl + Shift + P` (or `Cmd + Shift + P` on macOS), type **Python: Select Interpreter**, and select the **turbine** environment.
