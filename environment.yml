@@ -9,4 +9,7 @@ dependencies:
   - ipykernel             # Allows the Conda environment to appear as a Jupyter kernel
   - notebook              # Jupyter Notebook interface
   - numpy                 # Numerical computations
-  - matplotlib            # Basic plotting 
+  - matplotlib            # Basic plotting
+  - dataprep              # Exploratory Data Analysis package
+  - cookiecutter          # File structure creator
+  - hydra-core            # Library that allows you to access parameters from a configuration file inside a Python script

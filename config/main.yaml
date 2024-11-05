@@ -9,6 +9,9 @@ defaults:
   - _self_
 
 data:
-  raw: data/raw/sample.csv
-  processed: data/processed/processed.csv
-  final: data/final/final.csv
+  raw: 
+    fault: data/raw/fault_data.csv
+    scada: data/raw/scada_data.csv
+    status: data/raw/status_data.csv
+  processed:
+  final:
