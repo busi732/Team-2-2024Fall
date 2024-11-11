@@ -1,6 +1,9 @@
 from src.data_ingestion import *
 from dataprep.eda import create_report
 
+# Define global variables
+EDA_PATH = 'eda/'
+
 # Load the data
 df_merged = merge_data()
 
@@ -8,5 +11,5 @@ df_merged = merge_data()
 fault_report = create_report(df_merged)
 
 # Save the report
-EDA_PATH = 'data/eda_report/'
+
 fault_report.save(EDA_PATH + 'report.html')

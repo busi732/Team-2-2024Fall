@@ -1,36 +1,50 @@
 import pandas as pd
 
+# Define global variables
 RAW_PATH = 'data/raw/'
 PROCESSED_PATH = 'data/processed/'
 
-# Read fault data
-def read_fault():
-    '''Function to process the fault data'''
-    path = RAW_PATH + 'fault_data.csv'
-    data = pd.read_csv(path)
-    return data
+def read_data(name):
+    '''
+    Load shared data from the configured location.
 
-# Read scada data
-def read_scada():
-    '''Function to process the scada data'''
-    path = RAW_PATH + 'scada_data.csv'
-    data = pd.read_csv(path)
-    return data
+    Parameters:
+        name: {'fault', 'scada', 'status'}
+            Specify the name of the dataset to load.
 
-# Read status data
-def read_status():
-    '''Function to process the status data'''
-    path = RAW_PATH + 'status_data.csv'
-    data = pd.read_csv(path)
-    return data
+    Returns
+        data: DataFrame
+            The data loaded from the shared data file.
+    '''
+    
+    # Define valid names
+    valid = ['fault', 'scada', 'status']
+
+    # Test if arg is a valid name
+    if name in valid:
+        path = RAW_PATH + f'{name}_data.csv'
+        data = pd.read_csv(path)
+        return data
+    else:
+        print(f'Invalid call, please enter one of the following arguments: {valid}.')
 
 def merge_data(export=True):
-    '''Function to merge fault, scada, and status data on DateTime with a Full Outer Join.'''
+    '''
+    Merge fault, scada, and status data.
+    
+    Parameters
+        export: bool
+            Specify whether you want to save the merged dataset as a csv file.
+
+    Returns:
+        merged_data: DataFrame
+            The merged dataset.
+    '''
     
     # Read and preprocess each dataset
-    fault_data = read_fault()
-    scada_data = read_scada()
-    status_data = read_status()
+    fault_data = read_data('fault')
+    scada_data = read_data('scada')
+    status_data = read_data('status')
 
     # Ensure all DateTime columns are in pd.datetime format
     fault_data['DateTime'] = pd.to_datetime(fault_data['DateTime'])
