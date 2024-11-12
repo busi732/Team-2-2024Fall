@@ -1,10 +1,14 @@
 import pandas as pd
+import logging
+
+# create an instance of the logger
+logger = logging.getLogger()
 
 # Define global variables
 RAW_PATH = 'data/raw/'
 PROCESSED_PATH = 'data/processed/'
 
-def read_data(name):
+def read_data(name: str) -> pd.DataFrame:
     '''
     Load shared data from the configured location.
 
@@ -16,19 +20,16 @@ def read_data(name):
         data: DataFrame
             The data loaded from the shared data file.
     '''
+    # Create a path
+    path = f'{RAW_PATH}{name}.csv'
     
-    # Define valid names
-    valid = ['fault', 'scada', 'status']
+    # Load data
+    try:
+        return pd.read_csv(path)
+    except FileNotFoundError:
+        logger.error(f'No such file or directory: {path}')
 
-    # Test if arg is a valid name
-    if name in valid:
-        path = RAW_PATH + f'{name}_data.csv'
-        data = pd.read_csv(path)
-        return data
-    else:
-        print(f'Invalid call, please enter one of the following arguments: {valid}.')
-
-def merge_data(export=True):
+def merge_data(export: bool=False) -> pd.DataFrame:
     '''
     Merge fault, scada, and status data.
     
@@ -64,7 +65,7 @@ def merge_data(export=True):
 
     # Save the merged data to a CSV file
     if export:
-        path = PROCESSED_PATH + 'merged_data.csv'
+        path = PROCESSED_PATH + 'merged.csv'
         merged_data.to_csv(path, index=False)
         
     return merged_data
