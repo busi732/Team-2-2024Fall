@@ -1,36 +1,51 @@
 import pandas as pd
+import logging
 
+# create an instance of the logger
+logger = logging.getLogger()
+
+# Define global variables
 RAW_PATH = 'data/raw/'
 PROCESSED_PATH = 'data/processed/'
 
-# Read fault data
-def read_fault():
-    '''Function to process the fault data'''
-    path = RAW_PATH + 'fault_data.csv'
-    data = pd.read_csv(path)
-    return data
+def read_data(name: str) -> pd.DataFrame:
+    '''
+    Load shared data from the configured location.
 
-# Read scada data
-def read_scada():
-    '''Function to process the scada data'''
-    path = RAW_PATH + 'scada_data.csv'
-    data = pd.read_csv(path)
-    return data
+    Parameters:
+        name: {'fault', 'scada', 'status'}
+            Specify the name of the dataset to load.
 
-# Read status data
-def read_status():
-    '''Function to process the status data'''
-    path = RAW_PATH + 'status_data.csv'
-    data = pd.read_csv(path)
-    return data
+    Returns
+        data: DataFrame
+            The data loaded from the shared data file.
+    '''
+    # Create a path
+    path = f'{RAW_PATH}{name}.csv'
+    
+    # Load data
+    try:
+        return pd.read_csv(path)
+    except FileNotFoundError:
+        logger.error(f'No such file or directory: {path}')
 
-def merge_data(export=True):
-    '''Function to merge fault, scada, and status data on DateTime with a Full Outer Join.'''
+def merge_data(export: bool=False) -> pd.DataFrame:
+    '''
+    Merge fault, scada, and status data.
+    
+    Parameters
+        export: bool
+            Specify whether you want to save the merged dataset as a csv file.
+
+    Returns:
+        merged_data: DataFrame
+            The merged dataset.
+    '''
     
     # Read and preprocess each dataset
-    fault_data = read_fault()
-    scada_data = read_scada()
-    status_data = read_status()
+    fault_data = read_data('fault')
+    scada_data = read_data('scada')
+    status_data = read_data('status')
 
     # Ensure all DateTime columns are in pd.datetime format
     fault_data['DateTime'] = pd.to_datetime(fault_data['DateTime'])
@@ -50,7 +65,7 @@ def merge_data(export=True):
 
     # Save the merged data to a CSV file
     if export:
-        path = PROCESSED_PATH + 'merged_data.csv'
+        path = PROCESSED_PATH + 'merged.csv'
         merged_data.to_csv(path, index=False)
         
     return merged_data
