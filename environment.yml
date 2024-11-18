@@ -13,4 +13,4 @@ dependencies:
   - dataprep              # Exploratory Data Analysis package
   - cookiecutter          # File structure creator
   - hydra-core            # Library that allows you to access parameters from a configuration file inside a Python script
-  - openpyxl              # Allows Pandas to load and reand an Excel file
+  - openpyxl              # Allows Pandas to load and reand an Excel filey
