@@ -60,7 +60,7 @@ def merge_fault_scada(export: bool=False) -> pd.DataFrame:
 
     # Save the merged data to a CSV file
     if export:
-        path = PROCESSED_PATH + 'merged.csv'
+        path = PROCESSED_PATH + 'faultscada.csv'
         merged_data.to_csv(path, index=False)
         
     return merged_data
