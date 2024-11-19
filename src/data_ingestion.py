@@ -16,7 +16,7 @@ def read_data(name: str) -> pd.DataFrame:
         name: {'fault', 'scada', 'status'}
             Specify the name of the dataset to load.
 
-    Returns
+    Returns:
         data: DataFrame
             The data loaded from the shared data file.
     '''
@@ -42,7 +42,7 @@ def merge_fault_scada(export: bool=False) -> pd.DataFrame:
     '''
     Merge fault and scada data.
     
-    Parameters
+    Parameters:
         export: bool
             Specify whether you want to save the merged dataset as a csv file.
 
