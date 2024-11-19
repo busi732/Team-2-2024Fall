@@ -16,7 +16,7 @@ def read_data(name: str) -> pd.DataFrame:
         name: {'fault', 'scada', 'status'}
             Specify the name of the dataset to load.
 
-    Returns
+    Returns:
         data: DataFrame
             The data loaded from the shared data file.
     '''
@@ -25,15 +25,24 @@ def read_data(name: str) -> pd.DataFrame:
     
     # Load data
     try:
-        return pd.read_csv(path)
+        data = pd.read_csv(path)
+        
+        # Ensure DateTime columns are in pd.datetime format
+        if name == 'status':
+            data['Time'] = pd.to_datetime(data['Time'])
+            data.rename(columns={'Time': 'DateTime'}, inplace=True)
+        else:
+            data['DateTime'] = pd.to_datetime(data['DateTime'])
+            
+        return data
     except FileNotFoundError:
         logger.error(f'No such file or directory: {path}')
 
-def merge_data(export: bool=False) -> pd.DataFrame:
+def merge_fault_scada(export: bool=False) -> pd.DataFrame:
     '''
-    Merge fault, scada, and status data.
+    Merge fault and scada data.
     
-    Parameters
+    Parameters:
         export: bool
             Specify whether you want to save the merged dataset as a csv file.
 
@@ -45,27 +54,13 @@ def merge_data(export: bool=False) -> pd.DataFrame:
     # Read and preprocess each dataset
     fault_data = read_data('fault')
     scada_data = read_data('scada')
-    status_data = read_data('status')
-
-    # Ensure all DateTime columns are in pd.datetime format
-    fault_data['DateTime'] = pd.to_datetime(fault_data['DateTime'])
-    scada_data['DateTime'] = pd.to_datetime(scada_data['DateTime'])
-    status_data['Time'] = pd.to_datetime(status_data['Time'])
-    
-    # Rename the Time column in each dataset for clarity
-    fault_data.rename(columns={'Time': 'Time_fault'}, inplace=True)
-    scada_data.rename(columns={'Time': 'Time_scada'}, inplace=True)
-    status_data.rename(columns={'Time': 'DateTime'}, inplace=True)
     
     # Merge fault_data and scada_data on DateTime with a Full Outer Join
-    merged_data = pd.merge(fault_data, scada_data, on='DateTime', how='outer')
-    
-    # Merge the result with status_data on DateTime with a Full Outer Join
-    merged_data = pd.merge(merged_data, status_data, on='DateTime', how='outer')
+    merged_data = pd.merge(fault_data, scada_data, on=['DateTime', 'Time'], how='outer', suffixes=('_fault', '_scada'))
 
     # Save the merged data to a CSV file
     if export:
-        path = PROCESSED_PATH + 'merged.csv'
+        path = PROCESSED_PATH + 'faultscada.csv'
         merged_data.to_csv(path, index=False)
         
     return merged_data
