@@ -3,9 +3,9 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3.8            # Preferred Python version
+  - python=3.9            # Preferred Python version
   - jupyter               # Jupyter Notebook
-  - pandas                # Data analysis library
+  - pandas=1.3.5          # Data analysis library
   - ipykernel             # Allows the Conda environment to appear as a Jupyter kernel
   - notebook              # Jupyter Notebook interface
   - numpy                 # Numerical computations
@@ -14,3 +14,5 @@ dependencies:
   - cookiecutter          # File structure creator
   - hydra-core            # Library that allows you to access parameters from a configuration file inside a Python script
   - openpyxl              # Allows Pandas to load and reand an Excel filey
+  - gurobi                # Optimization solver
+  - pyomo                 # Optimization library
