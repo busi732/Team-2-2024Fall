@@ -17,12 +17,12 @@ This repository is dedicated to **Team 2** in BUSI 732, Fall 2024. The project i
 
 ---
 
-## 🎯 Mission  
+## Mission  
 The mission of this project is to **explore the IIOT data from EnergyCo’s wind turbines** and identify areas where operations can be optimized. The analysis will focus on **performance efficiency, predictive maintenance**, and **cost reduction opportunities**. The objective is to build a data science framework that delivers actionable insights to improve turbine uptime and productivity.
 
 ---
 
-## 🚀 Getting Started  
+## Getting Started  
 This section will guide you on what you need to employ in this project. We mainly work locally in **VS Code** with the **Conda environment**. The next section will teach you how to set up the environment for the project after satisfying the following required software.
 
 - **Prerequisites**:  
@@ -31,7 +31,7 @@ This section will guide you on what you need to employ in this project. We mainl
 
 ---
 
-## 🛠️ Project Setup Instructions  
+## Project Setup Instructions  
 This section allows you to set up an isolated environment containing all the necessary software for this project.  First, you clone the repository from GitHub, and then you set up the environment, some in-use packages, with the environment.yml file. By doing so, you can ensure compatibility and avoid conflicts with other projects
 
 ### 1. **Clone the Repository**  
@@ -63,7 +63,7 @@ conda activate turbine_env
 
 ---
 
-## 🌍 Environment Usage  
+## Environment Usage  
 Once the environment is activated, you can install additional packages as needed using either conda or pip. For example, we install Jupyter Notebook and common data science libraries as following to help us process data in the future.
 
 1. **Installing Packages**  
@@ -87,7 +87,7 @@ conda update --all
 
 ---
 
-## 🔄 Updating the Environment  
+## Updating the Environment  
 
 If new packages are added during development, follow these steps to ensure all team members can stay in sync.  
 
@@ -104,7 +104,7 @@ conda env update --file environment.yml --prune
 
 ---
 
-## 🔗 Contributing to the Project  
+## Contributing to the Project  
 To contribute to the project, commit and push your changes to the main branch. If the environment.yml file is updated, use conda env update to synchronize your local environment. After installing new packages, update the environment.yml file to maintain a clean and efficient environment.
 1. **After Making Changes**:  
 Use the following commands to update your work on **GitHub**:  
@@ -130,7 +130,7 @@ This keeps the `environment.yml` clean and avoids unnecessary dependencies.
 
 ---
 
-## ❓ Getting Help  
+## Getting Help  
 
 If you encounter any issues:  
 - **Open an issue** in the repository’s issue tracker.  
@@ -139,7 +139,7 @@ If you encounter any issues:
 
 ---
 
-## 👥 Who We Are  
+## Who We Are  
 
 This project is maintained by **Team 2** in **BUSI 732**.  
 
