@@ -5,7 +5,7 @@ This repository is dedicated to **Team 2** in BUSI 732, Fall 2024. The project i
 
 ---
 
-## 📋 Table of Contents  
+## Table of Contents  
 1. [Mission](#mission)  
 2. [Getting Started](#getting-started)  
 3. [Project Setup Instructions](#project-setup-instructions)  
