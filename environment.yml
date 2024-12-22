@@ -3,7 +3,7 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3.8            # Preferred Python version
+  - python=3.10            # Preferred Python version
   - jupyter               # Jupyter Notebook
   - pandas                # Data analysis library
   - ipykernel             # Allows the Conda environment to appear as a Jupyter kernel
