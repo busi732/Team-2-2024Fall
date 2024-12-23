@@ -51,7 +51,53 @@ The data pertains to a single wind turbine located in Texas within the ERCOT reg
 
 - **Preventative Maintenance:**
   - Has a 60% chance of preventing a particular type of failure.
+
 ## Feature Engineering
+### High Season vs Normal Season
+<img width="1004" alt="Screenshot 2024-12-23 at 3 37 38 AM" src="https://github.com/user-attachments/assets/449286d4-e7c7-4154-98ac-f24c93d340e2" />
+
+The high vs normal season refers to the average settlement price from Market Data of 2014 and 2015. Meaning that during the high demand season the prices rise up due to high demand of electricity. 
+The plot shows that (according 2014 and 2015):
+
+**The normal season is from December to May (Months with Prices Lower than the Average ($32.2/kW))**
+**The high season is from June to November (Months with Prices Higher than the Average ($32.2/kW))**
+
+- **Peak Period: July to November 2014 sees sustained high prices, suggesting potential seasonal factors (primarily summer high energy demand, because this is in Houston).**
+- Off-Peak Period: December 2014 to May 2015 shows a declining trend in prices, possibly reflecting seasonal reductions (less energy demand in Winter month) in energy demand or favorable market conditions.
+
+*This analysis highlights the importance of understanding seasonal evaluating price fluctuations in the energy market.*
+
+
+### Revenue
+
+**Revenue** is a crucial feature in this analysis as it directly reflects the financial performance of the wind turbine and its operations. It is calculated by multiplying the **change in energy production** (`Energy Change`) with the **Settlement Point Price** from the ERCOT market data.
+
+Calculation Process
+1. **Energy Change**:
+   - Derived from the `WEC: Production kWh` column in the SCADA data, this feature represents the hourly difference in energy production. It highlights operational fluctuations that may result from turbine performance or environmental factors.
+
+2. **Settlement Point Price**:
+   - Extracted from the ERCOT market data for 2014 and 2015, this value reflects the hourly market price for energy at the Houston Hub. Prices vary with demand and supply, impacting the revenue potential.
+
+3. **Revenue Formula**:
+   - ```
+     Revenue = Energy Change × Settlement Point Price
+   
+
+#### Importance of Revenue as a Feature
+- **Operational Insights**:
+  Revenue serves as a key indicator of turbine performance. Any decline in revenue may signal operational inefficiencies or external challenges like low energy prices.
+  
+- **Decision-Making**:
+  By understanding revenue patterns, EnergyCo can optimize maintenance schedules to coincide with periods of lower energy prices, minimizing financial impact during downtime.
+
+- **Strategy Development**:
+  Revenue analysis helps evaluate the cost-effectiveness of different maintenance strategies. For instance, downtime during high-revenue periods can result in significant financial losses, favoring external maintenance with shorter repair times.
+
+This feature not only quantifies the financial output of the turbine but also provides actionable insights for maximizing operational and economic efficiency.
+
+
+
 ## Objective Function
 
 ## Maintenance Strategy 1 (Minimize Maintenance Cost)
