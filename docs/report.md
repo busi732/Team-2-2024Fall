@@ -233,7 +233,6 @@ The results from both classes align closely, validating that the **linear optimi
 
 <img width="947" alt="Screenshot 2024-12-23 at 2 48 10 AM" src="https://github.com/user-attachments/assets/92c1ff6c-5f3e-4688-b8a9-0f17c59d8332" />
 
-# Analysis of Figure 4C vs. Figure 3C
 
 This analysis compares two scenarios using the `MaintenanceStrategies_revenue` class, which focuses on **maximizing total revenue**:
 1. **Figure 3C**: Without prevention maintenance.
