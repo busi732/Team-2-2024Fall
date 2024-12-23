@@ -69,6 +69,7 @@ The plot shows that (according 2014 and 2015):
 
 
 ### Revenue
+<img width="1001" alt="Screenshot 2024-12-23 at 3 48 32 AM" src="https://github.com/user-attachments/assets/e20c5b5e-230a-47ed-9d4e-fd577ade5a56" />
 
 **Revenue** is a crucial feature in this analysis as it directly reflects the financial performance of the wind turbine and its operations. It is calculated by multiplying the **change in energy production** (`Energy Change`) with the **Settlement Point Price** from the ERCOT market data.
 
