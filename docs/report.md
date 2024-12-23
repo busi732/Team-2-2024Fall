@@ -54,9 +54,69 @@ The data pertains to a single wind turbine located in Texas within the ERCOT reg
 ## Feature Engineering
 ### Objective Function
 
+## **MaintenanceStrategies_cost**
+
+The `MaintenanceStrategies_cost` class is designed to determine the optimal maintenance strategy for minimizing total maintenance costs based on internal and external maintenance options. It incorporates factors such as fault rates, seasonal demand variations, and preventive maintenance effectiveness.
+
+- **Parameters**:
+  - `max_faults`: Maximum number of faults expected to occur.
+  - `high_seasonality`: Proportion of faults occurring during the high-demand season (e.g., 0.7 indicates 70% faults happen in the high season).
+  - `cost_internal`: Fixed cost for handling all faults internally.
+  - `cost_external_normal`: Cost per fault for external maintenance during normal demand.
+  - `cost_external_high_demand`: Cost per fault for external maintenance during high-demand seasons.
+  - `prevention_effect`: Effectiveness of preventive maintenance in reducing fault occurrences.
+
+- **Fault Distribution**:
+  - Calculates the reduced number of faults after applying preventive measures (`faults_to_address`).
+  - Splits faults into high-demand and normal seasons using the `high_seasonality` parameter.
+
+### 2. Decision-Making (`maintenance_decsion` Method)
+- **Cost Calculation**:
+  - Compares the total cost of addressing faults externally (`total_external_cost`) with the fixed cost of internal maintenance (`cost_internal`).
+  
+- **Strategy Selection**:
+  - If external maintenance is cheaper, faults are assigned to external providers, split across normal and high-demand seasons.
+  - If internal maintenance is more cost-effective, all faults are addressed internally.
+
+## **MaintenanceStrategy_LinearOpt_cost**
+
+
+The `MaintenanceStrategy_LinearOpt_cost` class is a streamlined implementation of the `MaintenanceStrategies_cost` class. It is designed to **minimize maintenance costs** using a linear optimization approach with Pyomo and the Gurobi solver. This class determines the optimal maintenance strategy (internal vs. external) based on cost considerations.
+
+
+
+
+- **Parameters**:
+  - `max_faults`: Maximum number of faults expected to occur.
+  - `high_seasonality`: Proportion of faults occurring during the high-demand season (e.g., 0.7 indicates 70% faults happen in the high season).
+  - `cost_internal`: Fixed cost for handling all faults internally.
+  - `cost_external_normal`: Cost per fault for external maintenance during normal demand.
+  - `cost_external_high_demand`: Cost per fault for external maintenance during high-demand seasons.
+  - `prevention_effect`: Effectiveness of preventive maintenance in reducing fault occurrences.
+
+
+### 2. Optimization Model
+- **Decision Variable**:
+  - `x_internal`: A binary variable indicating whether internal maintenance is chosen (`1`) or not (`0`).
+- **Objective Function**:
+  - Minimizes the total cost of handling faults, which includes:
+    - External maintenance costs for faults during normal and high-demand seasons.
+    - Internal maintenance fixed costs if chosen.
+- **Seasonal Fault Distribution**:
+  - Splits faults into high-demand and normal seasons to calculate external maintenance costs.
+
+### 3. Solver
+- Uses the Gurobi solver to determine the optimal maintenance decision that minimizes total costs.
+
+|           | **`MaintenanceStrategies_cost`**             | **`MaintenanceStrategy_LinearOpt_cost`**           |
+|---------------------------|----------------------------------------------|---------------------------------------------------|
+| **Implementation**         | Direct cost comparison.                     | Uses linear optimization with Pyomo and Gurobi.  |
+
+
+
 ## Sensitivity Analysis
 
-### Risks and Assumptions
+## Risks and Assumptions
 
 The analysis conducted in this notebook relies on several key assumptions. These assumptions impact the thresholds and decisions illustrated in the sensitivity analysis graphs. If these assumptions change, the outcomes and interpretations could vary significantly.
 
