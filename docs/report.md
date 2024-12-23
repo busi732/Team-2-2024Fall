@@ -277,6 +277,45 @@ This analysis compares two scenarios using the `MaintenanceStrategies_revenue` c
 
 ## Recommendations
 
+When we evaluated **Cost Minimization** and **Revenue Maximization** strategies under different scenarios using input data, exploratory data analysis (EDA), and derived features for features engineering from the data source provided by the project sponsor. The analysis across both **MaintenanceStrategies_cost** & **MaintenanceStrategy_LinearOpt_cost** (minimizing cost) and **MaintenanceStrategies_revenue** (maximizing revenue), under scenarios with and without preventative maintenance, provides key insights into how decisions are made regarding internal vs. external maintenance. The results consistently highlight the trade-offs between cost, downtime, and revenue under different conditions.
+
+
+1. **MaintenanceStrategies_cost and  (Minimizing Cost)**
+   - **Without Preventative Maintenance**:
+     - All fault types consistently selected **internal maintenance** due to its fixed cost (`750,000`), which was lower than the total cost of external maintenance.
+     - External maintenance was not chosen in any scenario as its cost (variable per fault and seasonality) exceeded the internal fixed cost.
+   
+   - **With Preventative Maintenance (60% Fault Reduction)**:
+     - Internal maintenance remained the optimal choice for all fault types as the reduced fault count further validated the fixed cost efficiency of internal maintenance (`750,000`).
+     - No external maintenance was selected, as it was consistently more expensive.
+
+2. **MaintenanceStrategies_revenue (Maximizing Revenue)**
+   - **Without Preventative Maintenance**:
+     - All fault types selected **internal maintenance**, as it minimized downtime and maximized total revenue compared to external maintenance.
+     - Downtime and revenue losses were significant due to the higher fault counts, but internal maintenance consistently outperformed external maintenance.
+   
+   - **With Preventative Maintenance (60% Fault Reduction)**:
+     - For most fault types, **internal maintenance** was selected as it provided the highest revenue due to reduced downtime.
+     - However, for the `MF` fault type, **external maintenance** was chosen as it provided slightly better revenue by balancing repair time and costs.
+     - The strategy exhibited flexibility, adapting to fault type-specific trade-offs between cost, downtime, and revenue.
+
+**Comparison Between Strategies**
+| Metric                        | MaintenanceStrategies_cost & MaintenanceStrategy_LinearOpt_cost         | MaintenanceStrategies_revenue     |
+|-------------------------------|------------------------------------|------------------------------------|
+| **Focus**                     | Cost Minimization                 | Revenue Maximization              |
+| **Flexibility**               | Rigid: Always selects internal    | Adaptive: Balances internal vs. external |
+| **Impact of Preventative Maintenance** | Reduces fault count but does not change decision (internal preferred) | Reduces fault count, improves revenue, and adapts decisions based on trade-offs |
+| **Downtime Consideration**    | Not considered                   | Directly influences revenue and decisions |
+| **External Maintenance**      | Never selected                   | Selectively chosen for specific cases (e.g., `MF`) |
+
+- **Preventative Maintenance**: Always beneficial, as it reduces fault counts and downtime, improving both cost and revenue outcomes.
+- **Internal Maintenance**: The preferred choice in most scenarios due to its fixed cost efficiency and minimal downtime impact.
+- **External Maintenance**: Viable for specific fault types or scenarios where the trade-offs (e.g., reduced repair time or seasonality effects) lead to better overall outcomes, especially under a revenue-maximizing strategy.
+- **Strategic Flexibility**: Revenue-driven strategies provide better adaptability and decision-making based on operational priorities, while cost-driven strategies are more rigid and focused solely on minimizing expenses.
+
+Organizations should evaluate their operational goals (cost vs. revenue focus), leverage preventative maintenance, and choose a strategy that aligns with their objectives and resources.
+
+
 ## Risks and Assumptions
 
 The analysis conducted in this notebook relies on several key assumptions. These assumptions impact the thresholds and decisions illustrated in the sensitivity analysis graphs. If these assumptions change, the outcomes and interpretations could vary significantly.
